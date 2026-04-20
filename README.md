@@ -60,19 +60,18 @@ flutter test
 
 ## Application Screenshots
 
-Add your screenshots to a folder such as `assets/screenshots/` and replace the image paths below.
 
 ### Home Screen
 
-![Home Screen](lib/assets/screenshots/home-screen.png)
+![Home Screen](assets/screenshots/home-screen.png)
 
 ### Product Detail Screen
 
-![Product Detail Screen](lib/assets/screenshots/product-detail-screen.png)
+![Product Detail Screen](assets/screenshots/product-detail-screen.png)
 
 ### Cart Screen
 
-![Cart Screen](lib/assets/screenshots/cart-screen.png)
+![Cart Screen](assets/screenshots/cart-screen.png)
 
 ## Design Direction
 
