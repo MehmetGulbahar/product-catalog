@@ -9,6 +9,8 @@ class CartBadgeIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayCount = count > 99 ? '99+' : '$count';
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -24,7 +26,7 @@ class CartBadgeIcon extends StatelessWidget {
                 borderRadius: BorderRadius.circular(999),
               ),
               child: Text(
-                '$count',
+                displayCount,
                 style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 10,

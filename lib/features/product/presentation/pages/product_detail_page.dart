@@ -5,7 +5,9 @@ import '../../../../core/constants/app_spacing.dart';
 import '../../../../core/widgets/app_surface_card.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/usecases/get_product_detail.dart';
+import '../widgets/price_text.dart';
 import '../widgets/quantity_selector.dart';
+import '../widgets/section_title.dart';
 
 class ProductDetailPage extends StatefulWidget {
   static const String routeName = '/product-detail';
@@ -91,19 +93,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
-            Text(
-              product.title,
-              style: Theme.of(context).textTheme.headlineSmall,
+            SectionTitle(
+              title: product.title,
+              subtitle: 'Simple, clean and reliable product details.',
             ),
             const SizedBox(height: AppSpacing.xs),
-            Text(
-              '\$${product.price.toStringAsFixed(2)}',
-              style: const TextStyle(
-                color: AppColors.navy,
-                fontWeight: FontWeight.w700,
-                fontSize: 22,
-              ),
-            ),
+            PriceText(price: product.price, fontSize: 22),
             const SizedBox(height: AppSpacing.sm),
             Text(
               product.description,

@@ -77,7 +77,8 @@ class _MiniCatalogAppState extends State<MiniCatalogApp> {
   Route<dynamic> _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case HomePage.routeName:
-        return MaterialPageRoute<void>(
+        return _buildRoute(
+          settings: settings,
           builder: (context) {
             return HomePage(
               getProducts: _getProducts,
@@ -96,11 +97,11 @@ class _MiniCatalogAppState extends State<MiniCatalogApp> {
               },
             );
           },
-          settings: settings,
         );
       case ProductDetailPage.routeName:
         final args = settings.arguments as ProductDetailArguments;
-        return MaterialPageRoute<void>(
+        return _buildRoute(
+          settings: settings,
           builder: (_) {
             return ProductDetailPage(
               productId: args.productId,
@@ -108,10 +109,10 @@ class _MiniCatalogAppState extends State<MiniCatalogApp> {
               onAddToCart: _addToCart,
             );
           },
-          settings: settings,
         );
       case CartPage.routeName:
-        return MaterialPageRoute<void>(
+        return _buildRoute(
+          settings: settings,
           builder: (_) {
             return CartPage(
               cartItems: _cartItems,
@@ -119,14 +120,42 @@ class _MiniCatalogAppState extends State<MiniCatalogApp> {
               onRemoveItem: _removeFromCart,
             );
           },
-          settings: settings,
         );
       default:
-        return MaterialPageRoute<void>(
+        return _buildRoute(
+          settings: settings,
           builder: (_) =>
               const Scaffold(body: Center(child: Text('Page not found'))),
         );
     }
+  }
+
+  PageRoute<void> _buildRoute({
+    required RouteSettings settings,
+    required WidgetBuilder builder,
+  }) {
+    return PageRouteBuilder<void>(
+      settings: settings,
+      transitionDuration: const Duration(milliseconds: 220),
+      reverseTransitionDuration: const Duration(milliseconds: 180),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return builder(context);
+      },
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final offsetTween = Tween<Offset>(
+          begin: const Offset(0.02, 0),
+          end: Offset.zero,
+        );
+
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: animation.drive(offsetTween),
+            child: child,
+          ),
+        );
+      },
+    );
   }
 
   @override

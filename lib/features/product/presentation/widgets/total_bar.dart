@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_spacing.dart';
+import 'price_text.dart';
 
 class TotalBar extends StatelessWidget {
   final double totalPrice;
@@ -49,15 +50,7 @@ class TotalBar extends StatelessWidget {
                   letterSpacing: 0.3,
                 ),
               ),
-              Text(
-                '\$${totalPrice.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: AppColors.navy,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.4,
-                ),
-              ),
+              PriceText(price: totalPrice, fontSize: 20),
             ],
           ),
           const SizedBox(height: AppSpacing.sm),

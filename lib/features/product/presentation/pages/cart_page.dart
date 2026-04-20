@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_spacing.dart';
+import '../../../../core/widgets/empty_state_view.dart';
 import '../../domain/entities/cart_item.dart';
 import '../widgets/cart_list_item.dart';
+import '../widgets/section_title.dart';
 import '../widgets/total_bar.dart';
 
 class CartPage extends StatelessWidget {
@@ -30,18 +32,24 @@ class CartPage extends StatelessWidget {
               child: TotalBar(totalPrice: totalPrice, onCheckout: () {}),
             ),
       body: cartItems.isEmpty
-          ? const Center(
-              child: Text(
-                'Cart is empty',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-              ),
+          ? const EmptyStateView(
+              icon: Icons.shopping_bag_outlined,
+              title: 'Your cart is empty',
+              subtitle: 'Add products from the catalog to continue.',
             )
           : ListView.separated(
-              padding: const EdgeInsets.all(AppSpacing.sm),
-              itemCount: cartItems.length,
+              padding: AppSpacing.pagePadding,
+              itemCount: cartItems.length + 1,
               separatorBuilder: (_, _) => const SizedBox(height: AppSpacing.sm),
               itemBuilder: (context, index) {
-                final item = cartItems[index];
+                if (index == 0) {
+                  return const SectionTitle(
+                    title: 'Cart Items',
+                    subtitle: 'Review your selected products.',
+                  );
+                }
+
+                final item = cartItems[index - 1];
                 return CartListItem(
                   item: item,
                   onRemove: () => onRemoveItem(item.product.id),
