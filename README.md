@@ -63,15 +63,15 @@ flutter test
 
 ### Home Screen
 
-![Home Screen](assets/screenshots/home-screen.png)
+![Home Screen](https://github.com/MehmetGulbahar/product-catalog/blob/main/assets/home-screen.png)
 
 ### Product Detail Screen
 
-![Product Detail Screen](assets/screenshots/product-detail-screen.png)
+![Product Detail Screen](https://github.com/MehmetGulbahar/product-catalog/blob/main/assets/product-detail-screen.png)
 
 ### Cart Screen
 
-![Cart Screen](assets/screenshots/cart-screen.png)
+![Cart Screen](https://github.com/MehmetGulbahar/product-catalog/blob/main/assets/cart-screen.png)
 
 ## Design Direction
 
